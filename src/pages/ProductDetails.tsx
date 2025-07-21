@@ -14,6 +14,7 @@ import {
 } from '@/components/ui/select';
 import { products } from '@/data/products';
 import { useToast } from '@/hooks/use-toast';
+import Carousel from '@/components/Carousel';
 
 const ProductDetails = () => {
   const { id } = useParams();
@@ -90,11 +91,7 @@ const ProductDetails = () => {
           {/* Product Image */}
           <div className="relative">
             <div className="overflow-hidden rounded-lg border border-light-gray">
-              <img
-                src={product.image}
-                alt={product.name}
-                className="w-full h-auto object-contain"
-              />
+              <Carousel images={product.image} name={product.name} />
             </div>
             
             {/* Discount Badge */}

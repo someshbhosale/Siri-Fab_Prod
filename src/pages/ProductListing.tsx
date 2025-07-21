@@ -1,5 +1,5 @@
 import { useState, useMemo } from 'react';
-import { Search, Filter, SortAscIcon, LucideSortAsc, SortDesc } from 'lucide-react';
+import { Search, Filter, SortDesc } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import {
@@ -12,22 +12,29 @@ import {
 import ProductCard from '@/components/ProductCard';
 import { products, categories } from '@/data/products';
 import image from '@/assets/hero-bg.jpg';
+import { useEffect } from 'react';
+
+
+const PRODUCTS_PER_PAGE = 7;
 
 const ProductListing = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('');
   const [sortBy, setSortBy] = useState('');
+  const [currentPage, setCurrentPage] = useState(1);
+  useEffect(() => {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}, [currentPage]);
 
   const filteredAndSortedProducts = useMemo(() => {
     let filtered = products.filter((product) => {
       const matchesSearch = product.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                           product.description.toLowerCase().includes(searchTerm.toLowerCase());
+        product.description.toLowerCase().includes(searchTerm.toLowerCase());
       const matchesCategory = selectedCategory === '' || selectedCategory === 'All' || product.category === selectedCategory;
-      
+
       return matchesSearch && matchesCategory;
     });
 
-    // Sort products
     filtered.sort((a, b) => {
       switch (sortBy) {
         case 'price-low':
@@ -44,6 +51,15 @@ const ProductListing = () => {
     return filtered;
   }, [searchTerm, selectedCategory, sortBy]);
 
+  const totalPages = Math.ceil(filteredAndSortedProducts.length / PRODUCTS_PER_PAGE);
+  const paginatedProducts = filteredAndSortedProducts.slice(
+    (currentPage - 1) * PRODUCTS_PER_PAGE,
+    currentPage * PRODUCTS_PER_PAGE
+  );
+
+  const goToPrevious = () => setCurrentPage((p) => Math.max(p - 1, 1));
+  const goToNext = () => setCurrentPage((p) => Math.min(p + 1, totalPages));
+
   return (
     <div className="min-h-screen bg-background">
       {/* Hero Section */}
@@ -54,8 +70,7 @@ const ProductListing = () => {
         }}
       >
         <div className="absolute inset-0 bg-gradient-to-r from-primary/80 via-primary/50 to-secondary/50"></div>
-        
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="text-4xl md:text-6xl font-myFont opacity-95 mb-4">Siri Fab Collection</h1>
           <p className="text-xl md:text-2xl opacity-95">Discover Premium Indian Fashion</p>
         </div>
@@ -71,13 +86,19 @@ const ProductListing = () => {
               <Input
                 placeholder="Search products..."
                 value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
+                onChange={(e) => {
+                  setSearchTerm(e.target.value);
+                  setCurrentPage(1);
+                }}
                 className="pl-10"
               />
             </div>
 
             {/* Category Filter */}
-            <Select value={selectedCategory} onValueChange={setSelectedCategory}>
+            <Select value={selectedCategory} onValueChange={(val) => {
+              setSelectedCategory(val);
+              setCurrentPage(1);
+            }}>
               <SelectTrigger className="w-full md:w-48">
                 <Filter className="h-4 w-4 mr-2" />
                 <SelectValue placeholder="Category" />
@@ -92,7 +113,10 @@ const ProductListing = () => {
             </Select>
 
             {/* Sort */}
-            <Select value={sortBy} onValueChange={setSortBy}>
+            <Select value={sortBy} onValueChange={(val) => {
+              setSortBy(val);
+              setCurrentPage(1);
+            }}>
               <SelectTrigger className="w-full md:w-48">
                 <SortDesc className="h-4 w-4 mr-2 text-muted-foreground" />
                 <SelectValue placeholder="Sort by" />
@@ -112,7 +136,10 @@ const ProductListing = () => {
                 key={category}
                 variant={selectedCategory === category ? "default" : "outline"}
                 size="sm"
-                onClick={() => setSelectedCategory(category)}
+                onClick={() => {
+                  setSelectedCategory(category);
+                  setCurrentPage(1);
+                }}
                 className="mb-2"
               >
                 {category}
@@ -124,20 +151,43 @@ const ProductListing = () => {
         {/* Results Summary */}
         <div className="mb-6">
           <p className="text-muted-foreground">
-            Showing {filteredAndSortedProducts.length} of {products.length} products
-            {selectedCategory !== 'All' && (
+            Showing {paginatedProducts.length} of {filteredAndSortedProducts.length} products
+            {selectedCategory !== 'All' && selectedCategory && (
               <span> in {selectedCategory}</span>
             )}
           </p>
         </div>
 
         {/* Products Grid */}
-        {filteredAndSortedProducts.length > 0 ? (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-            {filteredAndSortedProducts.map((product) => (
-              <ProductCard key={product.id} product={product} />
-            ))}
-          </div>
+        {paginatedProducts.length > 0 ? (
+          <>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+              {paginatedProducts.map((product) => (
+                <ProductCard key={product.id} product={product} />
+              ))}
+            </div>
+
+            {/* Pagination */}
+            <div className="flex justify-center items-center gap-4 mt-10">
+              <Button
+                variant="outline"
+                onClick={goToPrevious}
+                disabled={currentPage === 1}
+              >
+                Previous
+              </Button>
+              <span className="text-sm text-muted-foreground">
+                Page {currentPage} of {totalPages}
+              </span>
+              <Button
+                variant="outline"
+                onClick={goToNext}
+                disabled={currentPage === totalPages}
+              >
+                Next
+              </Button>
+            </div>
+          </>
         ) : (
           <div className="text-center py-16">
             <div className="text-muted-foreground text-lg mb-2">No products found</div>

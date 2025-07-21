@@ -33,7 +33,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
       <Card className="group cursor-pointer overflow-hidden hover:shadow-lg transition-all duration-300 hover:scale-105 bg-card border-light-gray">
         <div className="relative overflow-hidden">
           <img
-            src={product.image}
+            src={product.image[0]}
             alt={product.name}
             className="w-full h-64 object-contain group-hover:scale-110 transition-transform duration-300"
           />
