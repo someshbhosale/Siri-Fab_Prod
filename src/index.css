@@ -6,6 +6,10 @@
 All colors MUST be HSL.
 */
 
+@font-face {
+  font-family: 'MyFont';
+  src: url('/src/assets/font.ttf') format('truetype');
+}
 
 @layer base {
   :root {

@@ -1,4 +1,5 @@
 import { Phone, Mail, MapPin, Instagram, Facebook } from 'lucide-react';
+import logo from '@/assets/logo.png';
 
 const Footer = () => {
   return (
@@ -7,7 +8,10 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {/* Company Info */}
           <div>
-            <h3 className="text-2xl font-bold mb-4 text-gold">Siri Fab</h3>
+            <div className="flex items-center space-x-3 mb-4">
+    <img src={logo} alt="Siri Fab Logo" className="h-12" />
+    <h3 className="text-2xl font-myFont text-gold">Siri Fab</h3>
+  </div>
             <p className="text-sm leading-relaxed mb-4">
               Discover the finest collection of traditional Indian clothing. 
               From elegant kurtis to stunning suits, we showcase the best in ethnic fashion.
@@ -53,7 +57,7 @@ const Footer = () => {
         </div>
 
         <div className="border-t border-primary-foreground/20 mt-8 pt-8 text-center text-sm">
-          <p>&copy; Devloped by <a href="https://www.linkedin.com/in/somesh-bhosale-943268187/"><b>Somesh Prashant Bhosale</b></a></p>
+          <p>&copy; Developed by <a href="https://www.linkedin.com/in/somesh-bhosale-943268187/"><b>Somesh Prashant Bhosale</b></a></p>
         </div>
       </div>
     </footer>

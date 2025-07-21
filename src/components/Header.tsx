@@ -23,7 +23,7 @@ const Header = () => {
           <Link to="/" className="flex items-center">
             <img src={logo} alt="Siri Fab Logo" className="h-12" />
             {/* Uncomment below if you want both logo and gradient text */}
-            <div className="ml-2 text-2xl font-bold bg-gradient-to-r from-royal-purple to-gold bg-clip-text text-transparent">
+            <div className="ml-2 text-2xl font-myFont bg-gradient-to-r from-royal-purple to-gold bg-clip-text text-transparent">
               Siri Fab
             </div>
           </Link>

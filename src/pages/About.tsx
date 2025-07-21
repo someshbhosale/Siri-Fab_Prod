@@ -1,6 +1,6 @@
 import { Heart, Star, Users, Award, Phone, Mail, MapPin, Instagram } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
-import 'mapbox-gl/dist/mapbox-gl.css';
+import image from '@/assets/hero-bg.jpg';
 
 const About = () => {
 
@@ -30,10 +30,18 @@ const About = () => {
   return (
     <div className="min-h-screen bg-background">
       {/* Hero Section */}
-      <div className="bg-gradient-to-r from-primary to-secondary text-primary-foreground py-16">
+      <div
+        className="relative bg-cover bg-center text-primary-foreground py-16"
+        style={{
+          backgroundImage: `url(${image})`,
+        }}
+      >
+        <div className="absolute inset-0 bg-gradient-to-r from-primary/80 via-primary/50 to-secondary/50"></div>
+        
+      
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-4xl md:text-6xl font-bold mb-6">About Siri Fab</h1>
-          <p className="text-xl md:text-2xl opacity-90 leading-relaxed">
+          <h1 className="text-4xl md:text-6xl font-myFont opacity-95 mb-6">About Siri Fab</h1>
+          <p className="text-xl md:text-2xl opacity-95 leading-relaxed">
             Celebrating the beauty of traditional Indian fashion with contemporary elegance
           </p>
         </div>
