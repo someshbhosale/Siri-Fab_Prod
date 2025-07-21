@@ -1,4 +1,5 @@
 import { Phone, Mail, MapPin, Instagram, Facebook } from 'lucide-react';
+import { Link } from "react-router-dom";
 import logo from '@/assets/logo.png';
 
 const Footer = () => {
@@ -30,9 +31,9 @@ const Footer = () => {
           <div>
             <h4 className="text-lg font-semibold mb-4 text-gold">Quick Links</h4>
             <ul className="space-y-2 text-sm">
-              <li><a href="/" className="hover:text-gold transition-colors">Products</a></li>
-              <li><a href="/about" className="hover:text-gold transition-colors">About Us</a></li>
-              <li><a href="/" className="hover:text-gold transition-colors">Categories</a></li>
+              <li><Link to="/" className="hover:text-gold transition-colors">Products</Link></li>
+              <li><Link to="/about" className="hover:text-gold transition-colors">About Us</Link></li>
+              <li><Link to="/" className="hover:text-gold transition-colors">Categories</Link></li>
             </ul>
           </div>
 
