@@ -1,4 +1,4 @@
-import { Phone, Mail, MapPin, Instagram, Facebook } from 'lucide-react';
+import { Phone, Mail, MapPin, Instagram, Facebook, Youtube } from 'lucide-react';
 import { Link } from "react-router-dom";
 import logo from '@/assets/logo.png';
 
@@ -21,6 +21,12 @@ const Footer = () => {
               <a href="https://www.instagram.com/siri_fab_?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" className="hover:text-gold transition-colors">
                 <Instagram className="h-5 w-5" />
               </a>
+              <a href="https://www.facebook.com/siri.fab.3" className="hover:text-gold transition-colors">
+                <Facebook className="h-5 w-5" />              
+              </a>
+              <a href="" className="hover:text-gold transition-colors">
+                <Youtube className="h-5 w-5" />
+              </a>
               <a href="https://wa.me/9483270602?text=Hello%20Siri%20Fab,%20I%20have%20a%20query%20about%20your%20products." className="hover:text-gold transition-colors">
                 <Phone className="h-5 w-5" />
               </a>
@@ -31,9 +37,10 @@ const Footer = () => {
           <div>
             <h4 className="text-lg font-semibold mb-4 text-gold">Quick Links</h4>
             <ul className="space-y-2 text-sm">
-              <li><Link to="/" className="hover:text-gold transition-colors">Products</Link></li>
-              <li><Link to="/about" className="hover:text-gold transition-colors">About Us</Link></li>
-              <li><Link to="/" className="hover:text-gold transition-colors">Categories</Link></li>
+              <li><Link to="/" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="hover:text-gold transition-colors">Products</Link></li>
+              <li><Link to="/about" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="hover:text-gold transition-colors">About Us</Link></li>
+              <li><Link to="/" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="hover:text-gold transition-colors">Categories</Link></li>
+              <li><Link to="/franchise" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}className="hover:text-gold transition-colors">Franchise</Link></li>
             </ul>
           </div>
 

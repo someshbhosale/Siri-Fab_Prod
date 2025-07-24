@@ -5,6 +5,8 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Product } from '@/data/products';
+import { useCart } from '@/contexts/CartContext';
+import { useToast } from '@/hooks/use-toast';
 
 interface ProductCardProps {
   product: Product;
@@ -12,7 +14,8 @@ interface ProductCardProps {
 
 const ProductCard = ({ product }: ProductCardProps) => {
   const [isWishlisted, setIsWishlisted] = useState(false);
-  
+  const { addToCart } = useCart();
+  const { toast } = useToast();
   const discountPercentage = product.originalPrice 
     ? Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100)
     : 0;
@@ -21,11 +24,11 @@ const ProductCard = ({ product }: ProductCardProps) => {
     e.preventDefault();
     e.stopPropagation();
     
-    const message = `Hi! I want to buy the following product:\n\nProduct: ${product.name}\nPrice: ₹${product.price}\nCategory: ${product.category}\n\nPlease let me know the availability.`;
-    const encodedMessage = encodeURIComponent(message);
-    const whatsappUrl = `https://wa.me/9483270602?text=${encodedMessage}`;
-    
-    window.open(whatsappUrl, '_blank');
+     addToCart(product);
+    toast({
+      title: "Added to cart!",
+      description: `${product.name} has been added to your cart.`,
+    });
   };
 
   return (
@@ -76,7 +79,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
                 onClick={handleAddToCart}
               >
                 <ShoppingCart className="h-4 w-4 mr-2" />
-                Buy Now
+                Add to Cart
               </Button>
             </div>
           </div>

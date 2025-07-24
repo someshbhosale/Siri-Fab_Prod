@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { ArrowLeft, ShoppingCart, Heart, Share2 } from 'lucide-react';
+import { ArrowLeft, ShoppingCart, Heart, Share2,Zap } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent } from '@/components/ui/card';
@@ -15,11 +15,13 @@ import {
 import { products } from '@/data/products';
 import { useToast } from '@/hooks/use-toast';
 import Carousel from '@/components/Carousel';
+import { useCart } from '@/contexts/CartContext';
 
 const ProductDetails = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const { toast } = useToast();
+  const { addToCart } = useCart();
   const [selectedSize, setSelectedSize] = useState('');
   const [isWishlisted, setIsWishlisted] = useState(false);
 
@@ -49,6 +51,26 @@ const ProductDetails = () => {
       });
       return;
     }
+
+    addToCart(product, selectedSize);
+    toast({
+      title: "Added to cart!",
+      description: `${product.name} has been added to your cart.`,
+    });
+  };
+
+  const handleBuyNow = () => {
+    if (product.size.length > 1 && !selectedSize) {
+      toast({
+        title: "Please select a size",
+        description: "Choose your preferred size before buying.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+
+
 
     const sizeInfo = selectedSize ? `\nSize: ${selectedSize}` : '';
     const message = `Hi! I want to buy the following product:\n\nProduct: ${product.name}\nPrice: ₹${product.price}\nCategory: ${product.category}${sizeInfo}\nColor: ${product.color}\nFabric: ${product.fabric}\n\nPlease let me know the availability.`;
@@ -177,14 +199,26 @@ const ProductDetails = () => {
 
             {/* Action Buttons */}
             <div className="space-y-4">
-              <Button
-                size="lg"
-                className="w-full bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 text-primary-foreground"
-                onClick={handleAddToCart}
-              >
-                <ShoppingCart className="h-5 w-5 mr-2" />
-                Buy Now
-              </Button>        
+              <div className="flex gap-3">
+                <Button
+                  size="lg"
+                  className="flex-1 bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 text-primary-foreground"
+                  onClick={handleAddToCart}
+                >
+                  <ShoppingCart className="h-5 w-5 mr-2" />
+                  Add to Cart
+                </Button>
+                
+                <Button
+                  size="lg"
+                  variant="outline"
+                  className="flex-1 bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 text-primary-foreground"
+                  onClick={handleBuyNow}
+                >
+                  <Zap className="h-5 w-5 mr-2" />
+                  Buy Now
+                </Button>
+              </div>        
             </div>
           </div>
         </div>

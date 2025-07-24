@@ -1,4 +1,4 @@
-import { Heart, Star, Users, Award, Phone, Mail, MapPin, Instagram } from 'lucide-react';
+import { Heart, Star, Users, Award, Phone, Mail, MapPin, Instagram, Facebook } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import image from '@/assets/hero-bg.jpg';
 
@@ -150,17 +150,14 @@ const About = () => {
             >
               <Phone className="h-6 w-6" />
               <span className="font-semibold">WhatsApp</span>
-            </a>
-            <a 
-              href="mailto:" 
-              className="flex items-center gap-2 text-primary hover:text-secondary transition-colors"
-            >
-              <Mail className="h-6 w-6" />
-              <span className="font-semibold">Email</span>
-            </a>
+            </a>          
             <a href='https://www.instagram.com/siri_fab_?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==' className="flex items-center gap-2 text-primary hover:text-secondary transition-colors">
               <Instagram className="h-6 w-6" />
               <span className="font-semibold">Instagram</span>
+            </a>
+            <a href="https://www.facebook.com/siri.fab.3" className="flex items-center gap-2 text-primary hover:text-secondary transition-colors">
+                            <Facebook className="h-6 w-6" />
+                            <span className="font-semibold">Facebook</span>              
             </a>
           </div>
         </div>

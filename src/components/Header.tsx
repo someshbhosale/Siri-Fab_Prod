@@ -3,14 +3,18 @@ import { ShoppingBag, Menu, X } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import logo from '@/assets/logo.png'; // Adjust the path as necessary
+import { Badge } from '@/components/ui/badge';
+import { useCart } from '@/contexts/CartContext';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const location = useLocation();
+  const { state } = useCart();
 
   const navigation = [
     { name: 'Products', href: '/' },
     { name: 'About Us', href: '/about' },
+    { name: 'Franchise', href: '/franchise' },
   ];
 
   const isActive = (href: string) => location.pathname === href;
@@ -46,9 +50,19 @@ const Header = () => {
 
           {/* Cart Icon */}
           <div className="flex items-center">
-            {/* <Button variant="ghost" size="sm" className="relative p-2">
-              <ShoppingBag className="h-6 w-6" />
-            </Button> */}
+            <Link to="/cart">
+              <Button variant="ghost" size="sm" className="relative p-2">
+                <ShoppingBag className="h-6 w-6" />
+                {state.itemCount > 0 && (
+                  <Badge 
+                    variant="destructive" 
+                    className="absolute -top-1 -right-1 h-5 w-5 p-0 flex items-center justify-center text-xs"
+                  >
+                    {state.itemCount}
+                  </Badge>
+                )}
+              </Button>
+            </Link>
 
             {/* Mobile menu button */}
             <Button
