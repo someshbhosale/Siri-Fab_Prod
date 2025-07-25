@@ -71,7 +71,7 @@ const ProductListing = () => {
       >
         <div className="absolute inset-0 bg-gradient-to-r from-primary/80 via-primary/50 to-secondary/50"></div>
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-4xl md:text-6xl font-myFont opacity-95 mb-4">Siri Fab Collection</h1>
+          <h1 className="text-4xl md:text-6xl font-myFont opacity-95 mb-4">Siri <span className="text-gold">Fab</span> Collection</h1>
           <p className="text-xl md:text-2xl opacity-95">Discover Premium Indian Fashion</p>
         </div>
       </div>

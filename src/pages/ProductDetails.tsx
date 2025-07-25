@@ -202,7 +202,7 @@ const ProductDetails = () => {
               <div className="flex gap-3">
                 <Button
                   size="lg"
-                  className="flex-1 bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 text-primary-foreground"
+                  className="flex-1 bg-primary hover:from-primary/90 text-secondary"
                   onClick={handleAddToCart}
                 >
                   <ShoppingCart className="h-5 w-5 mr-2" />
@@ -212,7 +212,7 @@ const ProductDetails = () => {
                 <Button
                   size="lg"
                   variant="outline"
-                  className="flex-1 bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 text-primary-foreground"
+                  className="flex-1 bg-primary hover:from-primary/90 text-secondary"
                   onClick={handleBuyNow}
                 >
                   <Zap className="h-5 w-5 mr-2" />

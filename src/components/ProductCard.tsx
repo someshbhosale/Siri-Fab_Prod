@@ -75,7 +75,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
             
             <div className="pt-2">
               <Button 
-                className="w-full bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 text-primary-foreground"
+                className="w-full bg-primary hover:bg-primary/90 text-secondary"
                 onClick={handleAddToCart}
               >
                 <ShoppingCart className="h-4 w-4 mr-2" />

@@ -51,7 +51,7 @@ const Header = () => {
           {/* Cart Icon */}
           <div className="flex items-center">
             <Link to="/cart">
-              <Button variant="ghost" size="sm" className="relative p-2">
+              <Button variant="ghost" size="sm" className="relative p-2" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
                 <ShoppingBag className="h-6 w-6" />
                 {state.itemCount > 0 && (
                   <Badge 
