@@ -157,7 +157,7 @@ Thank you!`;
           <p className="text-xl mb-8">
             Be part of India's leading ethnic fashion franchise and build your successful business
           </p>
-          <Badge className="bg-gold text-royal-purple text-lg px-6 py-2">
+          <Badge className="bg-gold text-royal-purple text-lg px-6 py-2 hover:bg-primary/90 hover:text-white transition-colors duration-300">
             Franchise Opportunities Available
           </Badge>
         </div>
@@ -433,7 +433,7 @@ Thank you!`;
                 <Button 
                   type="submit" 
                   size="lg" 
-                  className="w-full bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 text-primary-foreground text-lg py-6"
+                  className="w-full bg-primary hover:primary/90 text-primary-foreground text-lg py-6"
                 >
                   Submit Franchise Inquiry
                 </Button>

@@ -48,7 +48,7 @@ const Cart = () => {
               Looks like you haven't added anything to your cart yet.
             </p>
             <Link to="/">
-              <Button className="bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90">
+              <Button className="bg-primary text-primary-foreground hover:bg-primary/90">
                 Continue Shopping
               </Button>
             </Link>
@@ -154,7 +154,7 @@ const Cart = () => {
                 </div>
 
                 <Button
-                  className="w-full bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 text-primary-foreground"
+                  className="w-full bg-primary text-primary-foreground hover:bg-primary/90"
                   onClick={handleCheckout}
                 >
                   Checkout via WhatsApp
